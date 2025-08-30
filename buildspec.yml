@@ -49,9 +49,9 @@ phases:
       - echo Zipping function...
       - zip -r function.zip .
   post_build:
-  commands:
-    - echo Updating Lambda function...
-    - aws lambda update-function-code --function-name task-manager-handler --zip-file fileb://function.zip --region us-east-2
+    commands:
+      - echo Updating Lambda function...
+      - aws lambda update-function-code --function-name task-manager-handler --zip-file fileb://function.zip --region us-east-2
 
 
 
