@@ -1,0 +1,38 @@
+# version: 0.2
+
+# phases:
+#   install:
+#     runtime-versions:
+#       nodejs: 18
+#     commands:
+#       - echo "Installing backend dependencies..."
+#       - cd backend
+#       - npm ci
+#   build:
+#     commands:
+#       - echo "Building backend..."
+#       - cd backend
+#       - mkdir -p build
+#       - cp -r src package.json package-lock.json node_modules build/
+#       - cd build
+#       - zip -r ../function.zip .
+# artifacts:
+#   files:
+#     - backend/function.zip
+
+
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install
+  build:
+    commands:
+      - zip -r function.zip .
+      - aws lambda update-function-code \
+          --function-name task-manager-handler \
+          --zip-file fileb://function.zip \
+          --region us-east-2
+

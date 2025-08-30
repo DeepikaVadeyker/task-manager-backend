@@ -1,0 +1,19 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: prgsinc
+service: task-manager
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-2
+  environment:
+    TASKS_TABLE: Tasks
+functions:
+  api:
+    handler: src/handlers.handler
+    events:
+      - http:
+          path: tasks
+          method: ANY
+      - http:
+          path: tasks/{id}
+          method: ANY

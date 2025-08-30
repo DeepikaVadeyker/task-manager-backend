@@ -1,0 +1,78 @@
+{
+  "C:\\Users\\uday_\\trainingWorkSpace\\task-manager-aws\\task-manager-backend\\serverless.yml": {
+    "versionFramework": "4.18.2",
+    "servicePath": "C:\\Users\\uday_\\trainingWorkSpace\\task-manager-aws\\task-manager-backend\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "prgsinc",
+      "service": "task-manager",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "region": "us-east-2",
+        "environment": {
+          "TASKS_TABLE": "Tasks"
+        },
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "api": {
+          "handler": "src/handlers.handler",
+          "events": [
+            {
+              "http": {
+                "path": "tasks",
+                "method": "ANY"
+              }
+            },
+            {
+              "http": {
+                "path": "tasks/{id}",
+                "method": "ANY"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs18.x",
+      "region": "us-east-2",
+      "environment": {
+        "TASKS_TABLE": "Tasks"
+      },
+      "stage": "dev",
+      "versionFunctions": true
+    },
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "error": {
+      "message": "Serverless command \"offline\" not found. Run \"serverless help\" for a list of all available commands.",
+      "code": "UNRECOGNIZED_CLI_COMMAND"
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: prgsinc\nservice: task-manager\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: us-east-2\r\n  environment:\r\n    TASKS_TABLE: Tasks\r\nfunctions:\r\n  api:\r\n    handler: src/handlers.handler\r\n    events:\r\n      - http:\r\n          path: tasks\r\n          method: ANY\r\n      - http:\r\n          path: tasks/{id}\r\n          method: ANY\r\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "orgId": "a701f91f-a79b-48b2-af98-d0af2b1dadd3",
+    "orgName": "prgsinc",
+    "userId": "0G25nmFBk0B8htzJrD",
+    "userName": "prgsinc",
+    "serviceProviderAwsAccountId": "791096174465",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
