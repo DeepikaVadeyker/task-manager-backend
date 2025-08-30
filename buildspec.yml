@@ -21,18 +21,37 @@
 #     - backend/function.zip
 
 
+# version: 0.2
+# phases:
+#   install:
+#     runtime-versions:
+#       nodejs: 18
+#     commands:
+#       - npm install
+#   build:
+#     commands:
+#       - zip -r function.zip .
+#       - aws lambda update-function-code \
+#           --function-name task-manager-handler \
+#           --zip-file fileb://function.zip \
+#           --region us-east-2
+
 version: 0.2
 phases:
   install:
     runtime-versions:
       nodejs: 18
     commands:
+      - echo Installing dependencies...
       - npm install
   build:
     commands:
+      - echo Zipping function...
       - zip -r function.zip .
-      - aws lambda update-function-code \
-          --function-name task-manager-handler \
-          --zip-file fileb://function.zip \
-          --region us-east-2
+  post_build:
+  commands:
+    - echo Updating Lambda function...
+    - aws lambda update-function-code --function-name task-manager-handler --zip-file fileb://function.zip --region us-east-2
+
+
 
